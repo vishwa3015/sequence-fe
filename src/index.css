@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-felt-dark: #0f172a;
+    --color-board-bg: #1e293b;
+    --color-chip-red: #ef4444;
+    --color-chip-blue: #3b82f6;
+    --color-chip-green: #10b981;
+    --color-chip-yellow: #f59e0b;
+  }
+
+  body {
+    background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+    color: #f8fafc;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    user-select: none;
+    overflow-x: hidden;
+  }
+}
+
+/* Custom Glassmorphism Panels */
+.glass-panel {
+  background: rgba(30, 41, 59, 0.75);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.glass-panel-gold {
+  background: rgba(30, 41, 59, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(234, 179, 8, 0.3);
+  box-shadow: 0 0 20px rgba(234, 179, 8, 0.15);
+}
+
+/* Chip Animations */
+@keyframes chipDrop {
+  0% {
+    transform: scale(1.8) translateY(-20px);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(0.9) translateY(2px);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-chip-drop {
+  animation: chipDrop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(234, 179, 8, 0.6), inset 0 0 10px rgba(234, 179, 8, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(234, 179, 8, 0.9), inset 0 0 15px rgba(234, 179, 8, 0.7);
+  }
+}
+
+.animate-sequence-glow {
+  animation: pulseGlow 1.8s infinite ease-in-out;
+  z-index: 10;
+}
+
+/* Card Hover Effects */
+.playing-card {
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s ease;
+}
+
+.playing-card:hover:not(:disabled) {
+  transform: translateY(-8px) scale(1.04);
+  box-shadow: 0 12px 24px -6px rgba(0, 0, 0, 0.5);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.5);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.3);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.5);
+}
