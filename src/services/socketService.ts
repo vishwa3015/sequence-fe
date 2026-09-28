@@ -9,7 +9,9 @@ class SocketService {
       // Production URL fallback -> Environment Variable or Local Network IP
       const envUrl = import.meta.env.VITE_BACKEND_URL;
       const hostname = window.location.hostname || 'localhost';
-      const targetUrl = url || envUrl || `http://${hostname}:3001`;
+      const isLocal = hostname === 'localhost' || hostname === '127.0.0.1' || hostname.startsWith('192.168.');
+      const defaultBackend = isLocal ? `http://${hostname}:3001` : 'https://sequence-be-43ut.onrender.com';
+      const targetUrl = url || envUrl || defaultBackend;
 
       console.log('[SocketClient] Connecting to backend server at:', targetUrl);
 
